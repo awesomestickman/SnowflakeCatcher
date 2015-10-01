@@ -1,5 +1,5 @@
 
-catcher [] line = new catcher[1000];
+catcher [] line = new catcher[500];
 Snowflake [] storm;
 int counter=0;
 void setup()
@@ -29,7 +29,7 @@ void draw()
   }
   
   
-  if(counter>997){
+  if(counter>497){
     fill(220,220,220);
     text("you ran out of ink!",200,200);
   }
@@ -46,7 +46,7 @@ void mouseDragged()
 }
 void stormMaker()
 {
-  storm=new Snowflake[500];
+  storm=new Snowflake[100];
   for(int i=0;i<storm.length;i++){
    storm[i]=new Snowflake(); 
   }
