@@ -5,8 +5,9 @@ int counter=0;
 void setup()
 {
   //your code here
-  background(0);
+  
   size(300, 300);
+  background(0);
   stormMaker();
   noStroke();
 }
@@ -14,10 +15,10 @@ void draw()
 {
   background(0);
   for(int i = 0;i<line.length;i++){
-    if(line[i] != null){
+   if(line[i] != null){
    line[i].show(); 
-    }
-  }
+   }
+ }
   for(int i = 0;i<storm.length;i++){
     storm[i].erase();
     storm[i].lookDown();
@@ -29,6 +30,7 @@ void draw()
   
   
   if(counter>997){
+    fill(220,220,220);
     text("you ran out of ink!",200,200);
   }
   //your code here
@@ -91,14 +93,20 @@ class Snowflake
     
     //your code here
     if(y>0&&y<290){
-      if(get(x,y+4) != color(0,0,0) && get(x,y+4) != color(220,220,220))
+      if(get(x,y+4) != color(0,0,0)){
         isMoving=false;
+      }
+      else{
+        isMoving=true;
+      }
     }
+    
+    
   }
   void erase()
   {
     //your code here
-    fill(0);
+    fill(0,0,0);
     ellipse(x,y,8,8);
   }
   void move()

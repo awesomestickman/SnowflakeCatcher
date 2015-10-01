@@ -14,14 +14,16 @@ import java.io.IOException;
 
 public class SnowflakeCatcher extends PApplet {
 
-Snowflake a = new Snowflake();
+
 catcher [] line = new catcher[1000];
 Snowflake [] storm;
 int counter=0;
 public void setup()
 {
   //your code here
+  
   size(300, 300);
+  background(0);
   stormMaker();
   noStroke();
 }
@@ -29,23 +31,22 @@ public void draw()
 {
   background(0);
   for(int i = 0;i<line.length;i++){
-    if(line[i] != null){
+   if(line[i] != null){
    line[i].show(); 
-    }
-  }
+   }
+ }
   for(int i = 0;i<storm.length;i++){
-    
-   storm[i].show(); 
+    storm[i].erase();
+    storm[i].lookDown();
     storm[i].move();
     storm[i].wrap();
-    storm[i].lookDown();
+    storm[i].show();
+    
   }
   
-  a.show();
-  a.move();
-  a.wrap();
-  a.lookDown();
+  
   if(counter>997){
+    fill(220,220,220);
     text("you ran out of ink!",200,200);
   }
   //your code here
@@ -92,13 +93,15 @@ class Snowflake
     this.x=(int)(Math.random()*297+2);
     //this.y=0;
     this.y=(int)(Math.random()*297+2);
+    //this.y=0;
     isMoving=true;
     //class member variable initializations
   }
   public void show()
   {
     //your code here
-    fill(255,255,255);
+    noStroke();
+    fill(220,220,220);
     ellipse(x, y, 5, 5);
   }
   public void lookDown()
@@ -106,14 +109,21 @@ class Snowflake
     
     //your code here
     if(y>0&&y<290){
-      if(get(x,y+2) != color(0,0,0) && get(x,y+2) != color(255,255,255))
+      if(get(x,y+4) != color(0,0,0)){
         isMoving=false;
+      }
+      else{
+        isMoving=true;
+      }
     }
+    
+    
   }
   public void erase()
   {
     //your code here
-    fill(255);
+    fill(0,0,0);
+    ellipse(x,y,8,8);
   }
   public void move()
   {
@@ -124,8 +134,8 @@ class Snowflake
   }
   public void wrap()
   {
-    if(this.y>310){
-      this.y=0;
+    if(this.y>300){
+      this.y=1;
       this.x=(int)(Math.random()*297+2);
     }
     //your code here
